@@ -6,11 +6,7 @@ magneticod:
 	go install --tags fts5 "-ldflags=-s -w -X main.compiledOn=`date -u +%Y-%m-%dT%H:%M:%SZ`" ./cmd/magneticod
 
 magneticow:
-	# TODO: minify files!
-	# https://github.com/kevinburke/go-bindata
-	go-bindata -pkg "main" -o="cmd/magneticow/bindata.go" -prefix="cmd/magneticow/data/" cmd/magneticow/data/...
-	# Prepend the linter instruction to the beginning of the file
-	sed -i '1s;^;//lint:file-ignore * Ignore file altogether\n;' cmd/magneticow/bindata.go
+	# TODO: minify /data/* files!
 	go install --tags fts5 "-ldflags=-s -w -X main.compiledOn=`date -u +%Y-%m-%dT%H:%M:%SZ`" ./cmd/magneticow
 
 .PHONY: docker
@@ -38,9 +34,6 @@ image: image-magneticod image-magneticow
 
 vet:
 	go vet ./...
-
-staticcheck:
-	./misc/staticcheck/staticcheck -fail all ./...
 
 test:
 	go test ./...
