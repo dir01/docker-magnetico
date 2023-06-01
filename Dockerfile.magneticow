@@ -10,7 +10,7 @@ ADD ./go.mod          /magnetico/go.mod
 ADD ./go.sum          /magnetico/go.sum
 ADD ./cmd/magneticow  /magnetico/cmd/magneticow
 
-RUN     make magneticow
+RUN     make -j$(nproc) magneticow
 
 FROM alpine:latest
 LABEL maintainer="bora@boramalper.org"
