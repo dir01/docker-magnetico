@@ -8,13 +8,9 @@ See the list of [alternative front-ends](https://github.com/boramalper/magnetico
 developed by the community if you need something more advanced or different.
 
 ## Installation
-### Installing the Pre-Compiled Static Binary
-You can find the latest pre-compiled static binaries on [GitHub](https://github.com/boramalper/magnetico/releases)
-for versions from v0.7.0 onwards. 
 
 ### Installing the Docker Image
-Docker images are provided on [Docker Hub](https://hub.docker.com/u/boramalper) at
-the repositories `boramalper/magneticod` and `boramalper/magneticow`.
+Docker images are provided as `ghcr.io/dir01/magneticod` and `ghcr.io/dir01/magneticow`.
 
 ## Setup
 ### Configuration
@@ -35,11 +31,11 @@ in file
 - **On macOS (OS X):**
 
       TODO PATH HERE
-      
+
 `credentials` file must consist of lines of the following format
 
     <USERNAME>:<BCRYPT HASH>
-    
+
 where
 
 - `<USERNAME>` must start with a small-case (`[a-z]`) ASCII character, might contain non-consecutive
@@ -53,13 +49,20 @@ $  htpasswd -bnBC 12 "USERNAME" "PASSWORD"
 USERNAME:$2y$12$YE01LZ8jrbQbx6c0s2hdZO71dSjn2p/O9XsYJpz.5968yCysUgiaG
 ```
 
+On Mac, you can use the following command:
+```
+python3 -c "import bcrypt, getpass; password = getpass.getpass(); print(bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(12)).decode('utf-8'))"
+```
+(you might need to run `pip3 install bcrypt` first)
+
+
 ### Warnings
 1. **magnetico** currently does NOT have any filtering system NOR it allows individual torrents to be removed from the
    database, and BitTorrent DHT network is full of the materials that are considered illegal in many countries
    (violence, pornography, copyright infringing content, and even child-pornography). If you are afraid of the legal
    consequences, or simply morally against (indirectly) assisting those content to spread around, follow the
    **magneticow** installation instructions carefully to password-protect the web-interface from others.
-   
+
 2. **magneticow** uses HTTP Basic Authentication, meaning that your username and password will be
    transmitted in plain-text for every request. Configuring **magneticow** to serve behind a
    web-server with HTTPS enabled is strongly recommended, but unfortunately not described here. You
@@ -83,9 +86,9 @@ hence run:
   docker run -it --rm \
     -v ~/.local/share/magneticod:/root/.local/share/magneticod/ \
     -v ~/.config/magneticow/configuration.toml:/root/.config/magneticow/configuration.toml \
-    boramalper/magneticow
+    ghcr.io/dir01/magneticow
   ```
-  
+
 Using Docker, the default username & password is `magnetico` and `magnetico`.
 
 ### Searching
@@ -126,6 +129,6 @@ Using Docker, the default username & password is `magnetico` and `magnetico`.
 
 ### REST-ful HTTP API
 
-**magneticow** offers a REST-ful HTTP API that is capable of everything the web interface can do. 
+**magneticow** offers a REST-ful HTTP API that is capable of everything the web interface can do.
 
 See the [API documentation on Swaggerhub](https://app.swaggerhub.com/apis/boramalper/magneticow-api/v0.1).

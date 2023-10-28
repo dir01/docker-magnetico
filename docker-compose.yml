@@ -2,7 +2,7 @@ version: "2"
 
 services:
   magneticod:
-    image: boramalper/magneticod:latest
+    image: ghcr.io/dir01/magneticod:latest
     volumes:
       - ${MAGNETICOD_DATA}:/root/.local/share/magneticod
       - ${MAGNETICOD_CONFIG}:/root/.config/magneticod
@@ -11,7 +11,7 @@ services:
       - "--indexer-addr=0.0.0.0:1212"
 
   magneticow:
-    image: boramalper/magneticow:latest
+    image: ghcr.io/dir01/magneticow:latest
     volumes:
       - ${MAGNETICOD_DATA}:/root/.local/share/magneticod
       - ${MAGNETICOW_CONFIG}:/root/.config/magneticow

@@ -16,7 +16,7 @@ fetches metadata from the peers.
 
 ### Installing the Pre-Compiled Static Binary
 You can find the latest pre-compiled static binaries on [GitHub](https://github.com/boramalper/magnetico/releases)
-for versions from v0.7.0 onwards. 
+for versions from v0.7.0 onwards.
 
 ### Installing the Docker Image
 Docker images are provided on [Docker Hub](https://hub.docker.com/r/boramalper/magnetico/tags/) at
@@ -24,12 +24,12 @@ the repository `boramalper/magnetico`. Images are tagged as `d-vMAJOR.MINOR.PATC
 
 ## Setup
 1. (Optional, **requires root**) Disable iptables for a specified port:
-   
+
    ```bash
    iptables -I OUTPUT -t raw -p udp --sport PORT_NUMBER -j NOTRACK
    iptables -I PREROUTING -t raw -p udp --dport PORT_NUMBER -j NOTRACK
    ```
-   
+
    This is to prevent excessive number of ``EPERM`` "Operation not permitted" errors, which also has a negative impact
    on the performance.
 
@@ -65,9 +65,9 @@ hence run:
   docker run -it --rm \
     -v ~/.local/share/magneticod:/root/.local/share/magneticod/ \
     -v ~/.config/magneticod/configuration.toml:/root/.config/magneticod/configuration.toml \
-    boramalper/magneticod
+    ghcr.io/dir01/magneticod
   ```
-  
+
 ### Remark About the Network Usage
 **magneticod** does *not* have any built-in rate limiter *yet*, and it will literally suck the hell out of your
 bandwidth. Unless you are running **magneticod** on a separate machine dedicated for it, you might want to consider

@@ -25,12 +25,16 @@ docker_logs:
 	docker-compose logs -ft --tail=10
 
 image-magneticod:
-	docker build -t boramalper/magneticod -f Dockerfile.magneticod .
+	docker build -t ghcr.io/dir01/magneticod -f Dockerfile.magneticod .
 
 image-magneticow:
-	docker build -t boramalper/magneticow -f Dockerfile.magneticow .
+	docker build -t ghcr.io/dir01/magneticow -f Dockerfile.magneticow .
 
 image: image-magneticod image-magneticow
+
+docker_push:
+	docker push ghcr.io/dir01/magneticod
+	docker push ghcr.io/dir01/magneticow
 
 vet:
 	go vet ./...
